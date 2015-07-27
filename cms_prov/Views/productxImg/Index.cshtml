@@ -1,0 +1,56 @@
+﻿@model IEnumerable<cms_prov.product>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Categoría : @Html.DropDownList("SelectedCategory","ALL")
+        <input type="submit"  value="Filter " /> 
+    </p>
+}
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </th>
+        <th>
+            Categoria
+        </th>
+        <th>
+            Imagen
+        </th>
+    </tr>
+    
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Description)
+            </td>
+            <td>
+                <img src="data:image/png;base64,@Convert.ToBase64String(item.ImgProducts.Image, 0, item.ImgProducts.Image.Length)" width="100" />
+            </td>
+        </tr>
+        
+    }
+</table>
