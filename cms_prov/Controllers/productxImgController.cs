@@ -55,9 +55,47 @@ namespace cms_prov.Controllers
             //return View(modelo.ToList());
         }
 
+
+        //public ActionResult Index2(int? SelectedCategory)
+        //{
+        //    var category = entidad.Categories.OrderBy(q => q.Description).ToList();
+
+        //    ViewBag.SelectedCategory = new SelectList(category, "Id", "Description", SelectedCategory);
+        //    int categoryID = SelectedCategory.GetValueOrDefault();
+
+        //    IQueryable<IndexProduct> products = 
+        //        .Where(c => !SelectedCategory.HasValue || c.Id == categoryID)
+
+
+        //    //var sql = products.ToString();
+        //    return View(products.ToList());
+        //    var modelo = from p in entidad.ImgProducts
+        //                 join c in entidad.products                       
+
+        //                 on p.IdProduct equals c.Id
+        //                 join d in entidad.Categories
+        //                 on d.Id equals c.IdCategory
+
+        //                 select new ItemModel
+        //                 {
+        //                     Id = c.Id,
+        //                     Description = c.Description,
+        //                     Imagen = p.Image
+        //                 };
+        //    return View(modelo.ToList());
+        //}
+
+
         //BUSQUEDA Y ORDENAMIENTO
-        public ActionResult Sort(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Sort(string sortOrder, string currentFilter, string searchString, int? page, int? SelectedCategory)
         {
+
+            /*****************************/
+            var category = entidad.Categories.OrderBy(q => q.Description).ToList();
+            ViewBag.SelectedCategory = new SelectList(category, "Id", "Description", SelectedCategory);
+            int categoryID = SelectedCategory.GetValueOrDefault();
+             /* **********************         */
+
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Description_desc" : "";
             //ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -75,13 +113,15 @@ namespace cms_prov.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var modelo = from p in entidad.ImgProducts
-                         join c in entidad.products
-                         on p.IdProduct equals c.Id
-
+                         join c in entidad.products on p.IdProduct equals c.Id
+                         join d in entidad.Categories on c.IdCategory equals d.Id
+                         where  c.IdCategory == categoryID   
+                         //Where(c => !SelectedCategory.HasValue || c.Id == categoryID)
                          select new ItemModel
                          {
                              Id = c.Id,
                              Description = c.Description,
+                             Categorias = d.Description,
                              Imagen = p.Image
                          };
 

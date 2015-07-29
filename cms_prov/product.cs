@@ -25,6 +25,8 @@ namespace cms_prov
         public Nullable<int> IdCategory { get; set; }
     
         public virtual ICollection<ImgProduct> ImgProducts { get; set; }
+
+        
         public virtual Category Category { get; set; }
     }
 }
