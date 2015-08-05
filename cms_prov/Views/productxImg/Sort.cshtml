@@ -1,70 +1,226 @@
 ﻿@model System.Collections.Generic.IEnumerable<cms_prov.Models.ItemModel>
 @*@model PagedList.IPagedList<cms_prov.Models.ItemModel>
-@using PagedList.Mvc;*@
+    @using PagedList.Mvc;*@
 @*<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />*@
 @{
     ViewBag.Title = "Sort";
 }
 
-<h2>Sort</h2>
-@using (Html.BeginForm(/*"Sort", "productxImg", FormMethod.Get*/))
-{
-    <p>
-        Busca: @Html.TextBox("SearchString"/*, ViewBag.CurrentFilter as string*/)
-        <input type="submit" value="Search" />
-    </p>
+<div class="pg-opt">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Productos</h2>
+            </div>
+            
+        </div>
+    </div>
+</div>
 
-    <p>
-        Categoría : @Html.DropDownList("SelectedCategory", "ALL")
-        <input type="submit" value="Filter " />
-    </p>
+<section class="slice bg-white">
+    <div class="wp-section">  @*wp-section*@
+        <div class="container">  @*container*@
+            @*<div class="row">*@ @*row container*@
+                <div class="col-md-3">
+                    <div class="sidebar">
+                        <div class="panel panel-default panel-sidebar-1">
+                         
+                            <div class="panel-body">
+                             
+
+
+
+
+                            </div>
+                        </div>
+
+                        @using (Html.BeginForm(/*"Sort", "productxImg", FormMethod.Get*/))
+                        {
+
+
+
+
+                            <div class="panel panel-default panel-sidebar-1">
+                                <div class="panel-heading"><h2>Búsqueda Avanzada</h2></div>
+                                <div class="panel-body">
+                                    <form class="form-light" role="form">
+                                        <div class="form-group">
+                                        
+                                            <p>
+                                                @Html.TextBox("SearchString"/*, ViewBag.CurrentFilter as string*/)
+                                              
+                                            </p>
+                                        </div>
+                                        <div class="form-group">
+                                            <p>
+                                                Categoría : @Html.DropDownList("SelectedCategory", "ALL")
+                                               
+                                            </p>
+                                            
+                                        </div>
+                                       
+                                        <button type="submit" class="btn btn-base">Buscar</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        }
+
+
+
+                        @*<table>
+                                <tr>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Id)
+                                    </th>
+
+
+                                    <th>
+
+                                        @Html.ActionLink("Description", "Sort", new { sortOrder = ViewBag.NameSortParm/*, currentFilter = ViewBag.CurrentFilter */})
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Categorias)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Marcas)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Monedas)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Imagen)
+                                    </th>
+                                </tr>
+                                <tr>
+                                    @foreach (var item in Model)
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Categorias)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Marcas)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Monedas)
+                                        </td>
+                                        <td>
+
+                                            <img src="data:image/png;base64,@Convert.ToBase64String(item.Imagen, 0, item.Imagen.Length)" width="100" />
+
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Details", "Details", new { id = item.Id })
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+
+
+                                        </td>
+                                    }
+                                </tr>
+
+                            </table>
+                            <br />*@
+
+
+
+                    </div>
+    </div>
+
+
+            <div class="container">
+                @*<div class="row1">*@
+                <!-- Product list sort events -->
+                @*<div class="col-md-12">
+                    <div class="wp-block default product-list-filters light-gray">
+                        <span class="view-mode hidden-xs hidden-sm">
+                            <a href="">
+                                <i class="fa fa-th"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                        </span>
+                        <div class="filter sort-filter">
+                            <div class="form-inline form-light">
+                                <label>Ordenar por</label>
+                                <a href="">
+                                    <i class="fa fa-arrow-down"></i>
+                                    @Html.ActionLink("Description", "Sort", new { sortOrder = ViewBag.NameSortParm/*, currentFilter = ViewBag.CurrentFilter */})
+                                </a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>*@
+                @*<div class="container">*@
+                @{
+                    var itemCount = 0;
+                }
+                <!-- Product list -->
+                @{
+                    foreach (var item in Model.Reverse().Take(9))
+                    {
+                        var insertRow = (itemCount % 3 == 0 || itemCount % 3 == 3);
+                        if (insertRow)
+                        {
+                            @*@Html.Raw(@"<div class=""row"">")*@
+                    @:<div class="row">
+                        }
+                        <div class="col-md-4">
+
+                            <div class="wp-block product">
+                                <figure>
+                                    @*<img alt="" src="~/Images/20852816-6959-f6580ba5 (1).jpg" class="img-responsive img-center">*@
+                                    <img src="data:image/png;base64,@Convert.ToBase64String(item.Imagen, 0, item.Imagen.Length)" class="img-responsive img-center" />
+                                </figure>
+                                <h2 class="product-title"><a href="">@Html.DisplayFor(modelItem => item.Description)</a></h2>
+                                <p>
+                                    Descripcion del producto
+                                </p>
+                                <div class="wp-block-footer">
+                                    <span class="price pull-left">@Html.DisplayFor(modelItem => item.Precio)</span>
+                                    <a href="#" class="btn btn-sm btn-base btn-icon btn-cart pull-right">
+                                        <span>Add to cart</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                      
+                        if (insertRow)
+                        {
+                            @*@Html.Raw("</div>")*@
+                            @:  </div>
+                        }
+                       
+                    }
+                    itemCount++;
 }
-<table>
-    <tr>
-
-        <th>
-            @Html.DisplayNameFor(model => model.Id)
-        </th>
+             
+@*</div>*@  @*end container*@
 
 
-        <th>
-            @*@Html.DisplayNameFor(model => model.Description)*@
-            @Html.ActionLink("Description", "Sort", new { sortOrder = ViewBag.NameSortParm/*, currentFilter = ViewBag.CurrentFilter */})
-        </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Categorias)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Imagen)
-        </th>
-    </tr>
-    <tr>
-        @foreach (var item in Model)
-        {
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categorias)
-            </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.Imagen)*@
-                <img src="data:image/png;base64,@Convert.ToBase64String(item.Imagen, 0, item.Imagen.Length)" width="100" />
 
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
-            </td>
-        }
-    </tr>
 
-</table>
-<br />
-@*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-@Html.PagedListPager(Model, page => Url.Action("Sort",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@
+
+
+
+
+
+
+</div>
+    </div>
+@*</div>*@ @*row container end*@
+@*</div>*@@*container end*@
+</div> @*wp-section end*@
+</section>

@@ -14,6 +14,8 @@ namespace cms_prov.Models
 
         public string Description { get; set; }
         public string Nombre { get; set; }
+
+        public decimal? Precio { get; set; }
         public byte[] Imagen { get; set; }
         public product SelectProduct { get; set; }
 
@@ -22,6 +24,14 @@ namespace cms_prov.Models
         public string Categorias { get; set; }
 
         public Category SelectCategories { get; set; }
+
+        public string Monedas { get; set; }
+
+        public Moneda SelectedMonedas { get; set; }
+
+        public string Marcas { get; set; }
+
+        public Marca     SelectMarcas { get; set; }
 
     }
 }

@@ -123,6 +123,31 @@
             </div>
         </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdCategory, "IdCategory", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IdCategory", String.Empty)
+                @Html.ValidationMessageFor(model => model.IdCategory)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdMarca, "IdMarca", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IdMarca", String.Empty)
+                @Html.ValidationMessageFor(model => model.IdMarca)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdMoneda, "IdMoneda", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IdMoneda", String.Empty)
+                @Html.ValidationMessageFor(model => model.IdMoneda)
+            </div>
+        </div>
+
 
         <div id="uploaders">
             <input class="btn-default" type="file" id="fileToUpload" name="fileUpload" multiple="multiple" style="float: left;" />

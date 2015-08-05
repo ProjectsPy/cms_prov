@@ -21,6 +21,21 @@
           <Property Name="Image" Type="varbinary(max)" />
           <Property Name="IdProduct" Type="int" />
         </EntityType>
+        <EntityType Name="Marcas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Monedas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="150" />
+          <Property Name="Simbolo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="products">
           <Key>
             <PropertyRef Name="Id" />
@@ -29,6 +44,10 @@
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
           <Property Name="Codigo" Type="nvarchar" MaxLength="250" />
           <Property Name="IdCategory" Type="int" />
+          <Property Name="IdMarca" Type="int" />
+          <Property Name="IdMoneda" Type="int" />
+          <Property Name="PrecioCosto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PrecioVenta" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK_ImgProduct_products">
           <End Role="products" Type="Self.products" Multiplicity="0..1">
@@ -56,9 +75,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_products_Marcas">
+          <End Role="Marcas" Type="Self.Marcas" Multiplicity="0..1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marcas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_products_Monedas">
+          <End Role="Monedas" Type="Self.Monedas" Multiplicity="0..1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monedas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="IdMoneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="cms_pyModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ImgProduct" EntityType="Self.ImgProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marcas" EntityType="Self.Marcas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Monedas" EntityType="Self.Monedas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ImgProduct_products" Association="Self.FK_ImgProduct_products">
             <End Role="products" EntitySet="products" />
@@ -66,6 +111,14 @@
           </AssociationSet>
           <AssociationSet Name="FK_products_Category" Association="Self.FK_products_Category">
             <End Role="Category" EntitySet="Category" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_products_Marcas" Association="Self.FK_products_Marcas">
+            <End Role="Marcas" EntitySet="Marcas" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_products_Monedas" Association="Self.FK_products_Monedas">
+            <End Role="Monedas" EntitySet="Monedas" />
             <End Role="products" EntitySet="products" />
           </AssociationSet>
         </EntityContainer>
@@ -93,6 +146,12 @@
           <NavigationProperty Name="ImgProducts" Relationship="Self.FK_ImgProduct_products" FromRole="products" ToRole="ImgProduct" />
           <Property Name="IdCategory" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="cms_pyModel.FK_products_Category" FromRole="product" ToRole="Category" />
+          <Property Name="IdMarca" Type="Int32" />
+          <Property Name="IdMoneda" Type="Int32" />
+          <NavigationProperty Name="Marca" Relationship="cms_pyModel.FK_products_Marcas" FromRole="product" ToRole="Marca" />
+          <NavigationProperty Name="Moneda" Relationship="cms_pyModel.FK_products_Monedas" FromRole="product" ToRole="Moneda" />
+          <Property Name="PrecioCosto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PrecioVenta" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK_ImgProduct_products">
           <End Role="products" Type="Self.product" Multiplicity="0..1">
@@ -120,6 +179,16 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="product" EntitySet="products" />
           </AssociationSet>
+          <EntitySet Name="Marcas" EntityType="cms_pyModel.Marca" />
+          <EntitySet Name="Monedas" EntityType="cms_pyModel.Moneda" />
+          <AssociationSet Name="FK_products_Marcas" Association="cms_pyModel.FK_products_Marcas">
+            <End Role="Marca" EntitySet="Marcas" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_products_Monedas" Association="cms_pyModel.FK_products_Monedas">
+            <End Role="Moneda" EntitySet="Monedas" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -138,6 +207,47 @@
             </Principal>
             <Dependent Role="product">
               <PropertyRef Name="IdCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="products" Relationship="cms_pyModel.FK_products_Marcas" FromRole="Marca" ToRole="product" />
+        </EntityType>
+        <EntityType Name="Moneda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="products" Relationship="cms_pyModel.FK_products_Monedas" FromRole="Moneda" ToRole="product" />
+          <Property Name="Simbolo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_products_Marcas">
+          <End Type="cms_pyModel.Marca" Role="Marca" Multiplicity="0..1" />
+          <End Type="cms_pyModel.product" Role="product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_products_Monedas">
+          <End Type="cms_pyModel.Moneda" Role="Moneda" Multiplicity="0..1" />
+          <End Type="cms_pyModel.product" Role="product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moneda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="IdMoneda" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -160,6 +270,10 @@
           <EntitySetMapping Name="products">
             <EntityTypeMapping TypeName="cms_pyModel.product">
               <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="PrecioVenta" ColumnName="PrecioVenta" />
+                <ScalarProperty Name="PrecioCosto" ColumnName="PrecioCosto" />
+                <ScalarProperty Name="IdMoneda" ColumnName="IdMoneda" />
+                <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
                 <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -170,6 +284,23 @@
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="cms_pyModel.Category">
               <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marcas">
+            <EntityTypeMapping TypeName="cms_pyModel.Marca">
+              <MappingFragment StoreEntitySet="Marcas">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Monedas">
+            <EntityTypeMapping TypeName="cms_pyModel.Moneda">
+              <MappingFragment StoreEntitySet="Monedas">
+                <ScalarProperty Name="Simbolo" ColumnName="Simbolo" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

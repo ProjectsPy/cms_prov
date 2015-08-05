@@ -28,5 +28,7 @@ namespace cms_prov
         public virtual DbSet<ImgProduct> ImgProducts { get; set; }
         public virtual DbSet<product> products { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Marca> Marcas { get; set; }
+        public virtual DbSet<Moneda> Monedas { get; set; }
     }
 }

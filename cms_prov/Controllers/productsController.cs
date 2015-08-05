@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using cms_prov;
-
+using cms_prov.Models;
 namespace cms_prov.Controllers
 {
     public class productsController : Controller
@@ -27,17 +27,33 @@ namespace cms_prov.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            product product = db.products.Find(id);
-            if (product == null)
+            //product product = db.products.Find(id);
+
+            var  modelo = from p in db.ImgProducts
+                             join c in db.products on p.IdProduct equals c.Id
+                             join d in db.Categories on c.IdCategory equals d.Id
+                          where c.Id == id
+                                select new ItemModel
+                                {
+                                    Id = c.Id,
+                                    Description = c.Description,
+                                    Categorias = d.Description,
+                                    Imagen = p.Image
+                                };
+
+            if (modelo == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            return View(modelo);
         }
 
         // GET: products/Create
         public ActionResult Create()
         {
+            ViewBag.IdCategory = new SelectList(db.Categories, "Id", "Description");
+            ViewBag.IdMarca = new SelectList(db.Marcas, "Id", "Description");
+            ViewBag.IdMoneda = new SelectList(db.Monedas, "Id", "Description");
             return View();
         }
 
@@ -46,7 +62,7 @@ namespace cms_prov.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Description,Codigo")] product product ,List<HttpPostedFileBase> fileUpload)
+        public ActionResult Create([Bind(Include = "Id,Description,Codigo,IdCategory,IdMarca,IdMoneda")] product product, List<HttpPostedFileBase> fileUpload)
         {
             if (ModelState.IsValid)
             {
@@ -70,8 +86,9 @@ namespace cms_prov.Controllers
                     }  
                 }
 
-
-
+                ViewBag.IdCategory = new SelectList(db.Categories, "Id", "Description");
+                ViewBag.IdMarca = new SelectList(db.Marcas, "Id", "Description", product.IdMarca);
+                ViewBag.IdMoneda = new SelectList(db.Monedas, "Id", "Description", product.IdMoneda);
                 return RedirectToAction("Index");
             }
 

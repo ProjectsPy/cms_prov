@@ -23,10 +23,14 @@ namespace cms_prov
         public string Description { get; set; }
         public string Codigo { get; set; }
         public Nullable<int> IdCategory { get; set; }
+        public Nullable<int> IdMarca { get; set; }
+        public Nullable<int> IdMoneda { get; set; }
+        public Nullable<decimal> PrecioCosto { get; set; }
+        public Nullable<decimal> PrecioVenta { get; set; }
     
         public virtual ICollection<ImgProduct> ImgProducts { get; set; }
-
-        
         public virtual Category Category { get; set; }
+        public virtual Marca Marca { get; set; }
+        public virtual Moneda Moneda { get; set; }
     }
 }

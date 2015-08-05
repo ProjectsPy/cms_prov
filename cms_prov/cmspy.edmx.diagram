@@ -10,6 +10,10 @@
         <AssociationConnector Association="cms_pyModel.FK_ImgProduct_products" ManuallyRouted="false" />
         <EntityTypeShape EntityType="cms_pyModel.Category" Width="1.5" PointX="0.75" PointY="5.25" />
         <AssociationConnector Association="cms_pyModel.FK_products_Category" />
+        <EntityTypeShape EntityType="cms_pyModel.Marca" Width="1.5" PointX="0.75" PointY="7.625" />
+        <EntityTypeShape EntityType="cms_pyModel.Moneda" Width="1.5" PointX="3.375" PointY="3.875" />
+        <AssociationConnector Association="cms_pyModel.FK_products_Marcas" />
+        <AssociationConnector Association="cms_pyModel.FK_products_Monedas" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

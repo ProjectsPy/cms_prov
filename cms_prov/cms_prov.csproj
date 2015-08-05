@@ -188,6 +188,8 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MarcasController.cs" />
+    <Compile Include="Controllers\MonedasController.cs" />
     <Compile Include="Controllers\productsController.cs" />
     <Compile Include="Controllers\productxImgController.cs" />
     <Compile Include="Global.asax.cs">
@@ -196,11 +198,17 @@
     <Compile Include="ImgProduct.cs">
       <DependentUpon>cmspy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Marca.cs">
+      <DependentUpon>cmspy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndexProduct.cs" />
     <Compile Include="Models\ItemModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Moneda.cs">
+      <DependentUpon>cmspy.tt</DependentUpon>
+    </Compile>
     <Compile Include="product.cs">
       <DependentUpon>cmspy.tt</DependentUpon>
     </Compile>
@@ -211,13 +219,59 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="css\AjaxLoader.gif" />
+    <Content Include="css\blank.gif" />
+    <Content Include="css\bootstrap-theme.css" />
+    <Content Include="css\bootstrap-theme.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\fancybox.css" />
+    <Content Include="css\fancybox_loading%402x.gif" />
+    <Content Include="css\fancybox_loading.gif" />
+    <Content Include="css\fancybox_overlay.png" />
+    <Content Include="css\fancybox_sprite%402x.png" />
+    <Content Include="css\fancybox_sprite.png" />
+    <Content Include="css\globalstyle.css" />
+    <Content Include="css\globalstyleorange.css" />
+    <Content Include="css\grabbing.png" />
+    <Content Include="css\layerslider.css" />
+    <Content Include="css\mixitup.css" />
+    <Content Include="css\owlcarousel.css" />
+    <Content Include="css\owltheme.css" />
+    <Content Include="css\owltransitions.css" />
+    <Content Include="css\style.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fontawesome\css\font-awesome.min.css" />
+    <Content Include="fontawesome\css\fontawesome.css" />
+    <Content Include="fontawesome\fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\20852816-6959-f6580ba5 %281%29.jpg" />
+    <Content Include="Images\DAI-380IP04_a-400x400.png" />
+    <Content Include="Images\fw-1.jpg" />
+    <Content Include="Images\human-img-1.png" />
+    <Content Include="Images\human-img-4.png" />
+    <Content Include="Images\I3-380IP04_a-500x500.png" />
+    <Content Include="Images\Provision.jpg" />
+    <Content Include="js\app.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\fancybox.js" />
+    <Content Include="js\greensock.js" />
+    <Content Include="js\jquery1.js" />
+    <Content Include="js\jqueryfancyboxpack.js" />
+    <Content Include="js\jquerymixitup.js" />
+    <Content Include="js\jquerymixitupinit.js" />
+    <Content Include="js\jquerystellar.js" />
+    <Content Include="js\layersliderkreaturamedia.js" />
+    <Content Include="js\layerslidertransitions.js" />
+    <Content Include="js\owlcarousel.js" />
+    <Content Include="js\owlcarousel.min.js" />
+    <Content Include="layerslider\skins\v5\loading.gif" />
+    <Content Include="layerslider\skins\v5\nothumb.png" />
+    <Content Include="layerslider\skins\v5\skin.css" />
+    <Content Include="layerslider\skins\v5\skin.png" />
     <Content Include="script.sql" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="cmspy.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>cmspy.Designer.cs</LastGenOutput>
@@ -235,20 +289,19 @@
       <DependentUpon>cmspy.edmx</DependentUpon>
       <LastGenOutput>cmspy.cs</LastGenOutput>
     </Content>
+    <Content Include="css\bootstrap-theme.css.map" />
+    <Content Include="css\bootstrap.css.map" />
+    <Content Include="fontawesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="fontawesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="fontawesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="fontawesome\fonts\FontAwesome.otf" />
+    <Content Include="Images\Thumbs.db" />
+    <Content Include="layerslider\skins\v5\Thumbs.db" />
+    <None Include="Properties\PublishProfiles\2002-6703.el-alt.com - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\2002-6703.el-alt.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\dragon - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\dragon - Web Deploy.pubxml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\jquery-1.11.2.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -265,7 +318,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -288,10 +340,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\products\Create.cshtml" />
     <Content Include="Views\products\Delete.cshtml" />
-    <Content Include="Views\products\Details.cshtml" />
     <Content Include="Views\products\Edit.cshtml" />
     <Content Include="Views\products\Index.cshtml" />
-    <Content Include="Views\productxImg\Details.cshtml" />
     <Content Include="Views\productxImg\Sort.cshtml" />
     <Content Include="Views\Categories\Create.cshtml" />
     <Content Include="Views\Categories\Delete.cshtml" />
@@ -299,9 +349,24 @@
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\productxImg\Index.cshtml" />
+    <Content Include="Views\products\Details.cshtml" />
+    <Content Include="Views\productxImg\Details.cshtml" />
+    <Content Include="Views\Marcas\Create.cshtml" />
+    <Content Include="Views\Marcas\Delete.cshtml" />
+    <Content Include="Views\Marcas\Details.cshtml" />
+    <Content Include="Views\Marcas\Edit.cshtml" />
+    <Content Include="Views\Marcas\Index.cshtml" />
+    <Content Include="Views\Monedas\Create.cshtml" />
+    <Content Include="Views\Monedas\Delete.cshtml" />
+    <Content Include="Views\Monedas\Details.cshtml" />
+    <Content Include="Views\Monedas\Edit.cshtml" />
+    <Content Include="Views\Monedas\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\provisionpy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="fontawesome\less\" />
+    <Folder Include="fontawesome\scss\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
