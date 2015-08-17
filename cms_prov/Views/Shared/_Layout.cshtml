@@ -44,6 +44,22 @@
 
     <div id="divHeaderWrapper">
         <header class="header-standard-2">
+            <div class="top-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <nav class="top-header-menu">
+                                <ul class="top-menu">
+                                    <li>
+                                        @Html.Partial("_LoginPartial")
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- MAIN NAV -->
             <div class="navbar navbar-wp navbar-arrow mega-nav" role="navigation">
                 <div class="container">
@@ -75,13 +91,13 @@
                                     </form>
                                 </div>
                             </li>
-                            <li class="dropdown dropdown-meganav mega-dropdown-fluid">
+                            @*<li class="dropdown dropdown-meganav mega-dropdown-fluid">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inicio</a>
 
                             </li>
                             <li class="dropdown">
-                                @*@Html.ActionLink("Productos", "Productos", "Home")*@
-                            </li>
+                               @Html.ActionLink("Productos", "Productos", "Home")
+                            </li>*@
 
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@*@Html.ActionLink("About", "About", "Home")*@</li>

@@ -795,7 +795,7 @@ pre code {
 }
 
 .row:after {
-  clear: both;
+  /*clear: both;*/
 }
 
 .row:before,
@@ -805,7 +805,7 @@ pre code {
 }
 
 .row:after {
-  clear: both;
+  /*clear: both;*/
 }
 
 .col-xs-1,

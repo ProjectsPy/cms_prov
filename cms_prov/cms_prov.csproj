@@ -361,6 +361,8 @@
     <Content Include="Views\Monedas\Details.cshtml" />
     <Content Include="Views\Monedas\Edit.cshtml" />
     <Content Include="Views\Monedas\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\provision - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\provision - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\provisionpy.pubxml" />
   </ItemGroup>
   <ItemGroup>

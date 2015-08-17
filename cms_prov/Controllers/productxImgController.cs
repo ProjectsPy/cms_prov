@@ -174,7 +174,7 @@ namespace cms_prov.Controllers
                 }
 
                 
-                int pageSize = 6;
+                int pageSize = 100;
                 int pageNumber = (page ?? 1);
                 return View(modelo.ToPagedList(pageNumber, pageSize));
             }

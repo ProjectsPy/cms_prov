@@ -54,7 +54,7 @@ namespace cms_prov
                       "~/js/greensock.js",
                       "~/js/layerslidertransitions.js",
                       "~/js/layersliderkreaturamedia.js"));
-          
+
             BundleTable.EnableOptimizations = true;
         }
         
